@@ -31,7 +31,7 @@
                             </a>
                             <hr>
                             <?php if ($m->id_kategori == 2) : ?>
-                                <div class="card_area d-flex align-items-center">
+                                <div class="col-md-6">
                                     <a class="primary-btn" href="<?= base_url('/daftarkamar/booking/' . $m->id_kamar); ?>">Booking Kamar</a>
                                 </div>
                                 <hr>

@@ -75,12 +75,12 @@ class Filters extends BaseConfig
     public $filters = [
         'admin' => [
             'before' => [
-                'kamar/create/', 'kamar/create/*', 'kamar/index/', 'kamar/index/*', 'kamar/trashed/', 'kamar/trashed/*', 'kamar/update/', 'kamar/update/*'
+                'kamar/create/', 'kamar/create/*', 'kamar/index/', 'kamar/index/*', 'kamar/trashed/', 'kamar/trashed/*', 'kamar/update/', 'kamar/update/*', 'transaksi/history/', 'user/*'
             ]
         ],
         'isLoggedIn' => [
             'before' => [
-                'daftarkamar/booking/*'
+                'daftarkamar/booking/*', 'kamar/*', 'user/*', 'transaksi/*'
             ]
         ]
     ];

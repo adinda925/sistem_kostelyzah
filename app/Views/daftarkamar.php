@@ -29,9 +29,9 @@
                                 <p class="hover-text">Fasilitas</p>
                             </a>
                             <hr>
-                            <?php if ($m->id_kategori == 2) : ?>
-                                <div class="card_area d-flex align-items-center">
-                                    <a class="primary-btn" href="<?= base_url('/daftarkamar/booking/' . $m->id_kamar); ?>">Booking Kamar</a>
+                            <?php if ($m->jumlah != 0) : ?>
+                                <div class="col-md-12">
+                                    <a href="<?= base_url('/daftarkamar/booking/' . $m->id_kamar); ?>"><button type="button" id="" class="btn btn-warning">Booking</button></a>
                                 </div>
                                 <hr>
                             <?php endif ?>

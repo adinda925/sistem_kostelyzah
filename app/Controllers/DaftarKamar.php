@@ -43,6 +43,26 @@ class DaftarKamar extends BaseController
 
         $model = $modelKamar->find($id);
 
+        $modelbulan = new \App\Models\BulanModel();
+        $bulan = $modelbulan->findAll();
+
+        $arraybulan = null;
+
+        foreach ($bulan as $k) {
+            $arraybulan[$k->id] = $k->bulan;
+        }
+        return view('daftarkamar/booking', [
+            'model' => $model,
+            'arraybulan' => $arraybulan
+        ]);
+    }
+
+    public function saveBooking()
+    {
+        $id = $this->request->uri->getSegment(3);
+        $transaksiModel = new \App\Models\TransaksiModel();
+        $model = $transaksiModel->find($id);
+
         if ($this->request->getPost()) {
             $data = $this->request->getPost();
             $this->validation->run($data, 'transaksi');
@@ -54,15 +74,15 @@ class DaftarKamar extends BaseController
 
                 $KamarModel = new \App\Models\KamarModel();
                 $id_kamars = $this->request->getPost('id_kamar');
-
                 $kamar = $KamarModel->find($id_kamars);
                 $entityKamar = new \App\Entities\Kamar();
-                $entityKamar->id_Kamar = $id_kamars;
-
+                $entityKamar->id_kamar = $id_kamars;
+                $entityKamar->jumlah = $kamar->jumlah - 1;
                 $KamarModel->save($entityKamar);
 
+                // $KamarModel->save($entityKamar);
+
                 $transaksi->fill($data);
-                $transaksi->status = 0;
                 $transaksi->created_by = $this->session->get('id_user');
                 $transaksi->created_date = date("Y-m-d H:i:s");
 
@@ -75,8 +95,18 @@ class DaftarKamar extends BaseController
                 return redirect()->to(site_url($segment));
             }
         }
+        $modelbulan = new \App\Models\BulanModel();
+        $bulan = $modelbulan->findAll();
+
+        $arraybulan = null;
+
+        foreach ($bulan as $k) {
+            $arraybulan[$k->id] = $k->bulan;
+        }
+
         return view('daftarkamar/booking', [
             'model' => $model,
+            'arraybulan' => $arraybulan,
         ]);
     }
 }

@@ -22,15 +22,10 @@ class Home extends BaseController
         return view('index');
     }
 
-    public function user()
-    {
-        return view('user/index');
-    }
-
     public function daftarkamar()
     {
         $kamar = new \App\Models\KamarModel();
-        $modelkamar = $kamar->where('id_kategori =', 2)->findAll();
+        $modelkamar = $kamar->findAll();
 
         return view('daftarkamar', [
             'modelkamar' => $modelkamar,

@@ -123,7 +123,7 @@ class Validation extends BaseConfig
         'fasilitas' => [
             'rules' => 'required',
         ],
-        'id_kategori' => [
+        'jumlah' => [
             'rules' => 'required',
         ]
 
@@ -144,7 +144,7 @@ class Validation extends BaseConfig
         'fasilitas' => [
             'required' => '{field} Harus diisi',
         ],
-        'id_kategori' => [
+        'jumlah' => [
             'required' => '{field} Harus diisi',
         ]
 
@@ -160,7 +160,7 @@ class Validation extends BaseConfig
         'fasilitas' => [
             'rules' => 'required',
         ],
-        'id_kategori' => [
+        'jumlah' => [
             'rules' => 'required',
         ]
     ];
@@ -187,8 +187,6 @@ class Validation extends BaseConfig
         'biaya' => [
             'rules' => 'required|is_natural',
         ],
-        'tahun' => [
-            'rules' => 'required',
-        ],
+
     ];
 }

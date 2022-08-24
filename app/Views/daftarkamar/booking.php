@@ -3,6 +3,7 @@
 
 <div class="">
     <?php
+    // dd(session());
     $id_kamar = [
         'name' => 'id_kamar',
         'id' => 'id_kamar',
@@ -18,25 +19,25 @@
     ];
 
     $nama = [
-        'name' => 'id_user',
-        'id' => 'id_user',
+        'name' => 'nama',
+        'id' => 'nama',
         'type' => 'text',
         'class' => 'form-control',
+        'value' => null,
     ];
 
     $email = [
-        'name' => 'id_user',
-        'id' => 'id_user',
-        'type' => 'text',
+        'name' => 'email',
+        'id' => 'email',
+        'type' => 'email',
         'class' => 'form-control',
     ];
 
     $no_wa = [
-        'name' => 'id_user',
-        'id' => 'id_user',
+        'name' => 'no_wa',
+        'id' => 'no_wa',
         'type' => 'number',
         'class' => 'form-control',
-        'placeholder' => 'cth: 6281345678909'
     ];
 
     $no_kamar = [
@@ -57,11 +58,10 @@
         'min' => 0,
     ];
 
-    $tahun = [
-        'name' => 'tahun',
-        'id' => 'tahun',
+    $id_bulan = [
+        'name' => 'id_kategori',
         'class' => 'form-control',
-        'type' => 'month',
+        'options' => $arraybulan,
         'selected' => null,
     ];
 
@@ -75,65 +75,61 @@
     $session = session();
     $errors = $session->getFlashdata('errors');
     ?>
-    <section class="kamar_part" style="margin: 150px;">
-        <div class="container-fluid single_padding_top padding_bottom">
-            <div class="row justify-content-center">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="d-flex justify-content-center">
-                                <img class="img text-center" alt="image" width="400px" src="<?= base_url('uploads/' . $model->foto) ?>" />
-                                <div class="col-lg-5 offset-lg-1">
-                                    <div class="s_product_text">
-                                        <h3><?= $model->no_kamar; ?></h3>
-                                        <h2><?= "Rp " . number_format($model->biaya, 2, ',', '.'); ?> /bulan</h2>
-                                        <p><?= $model->fasilitas; ?></p>
-                                    </div>
-                                </div>
+    <section class="login_box_area section_gap">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="login_box_img">
+                        <img class="img-fluid" src="<?= base_url('uploads/' . $model->foto) ?>" alt="">
+                        <div class="hover">
+                            <h4><?= $model->no_kamar; ?></h4>
+                            <h2 style="color: white;"><?= "Rp " . number_format($model->biaya, 2, ',', '.'); ?> /bulan</h2>
+                            <p><?= $model->fasilitas; ?></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <h3>Booking Kamar</h3>
+                    </dic>
+                    <div class="">
+                        <?= form_open_multipart('/daftarkamar/booking-done') ?>
+                        <?= form_input($id_user) ?>
+                        <?= form_input($id_kamar) ?>
+                        <div class="col-md-12 form-group">
+                            <?= form_label("Nama", "nama") ?>
+                            <?= form_input($nama) ?>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <?= form_label("Nomor Telepon", "no_wa") ?>
+                            <?= form_input($no_wa) ?>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <?= form_label("Email", "email") ?>
+                            <?= form_input($email) ?>
+                        </div>
+                        <div class="col-md-12 form-group">
+                            <?= form_label("Kamar", "no_kamar") ?>
+                            <?= form_input($no_kamar) ?>
+                        </div>
+
+                        <div class="col-md-12 form-group">
+                            <?= form_label("Biaya /bulan", "biaya") ?>
+                            <?= form_input($biaya) ?>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <?= form_label("Bulan Masuk", "bulan") ?>
+                            <br>
+                            <div class="default-select">
+                                <?= form_dropdown($id_bulan); ?>
                             </div>
                         </div>
-                        <div class="col-4" style="margin-left: 100px">
-                            <h1>Booking Kamar</h1>
-                            </dic>
-                            <div class="card-body">
-                                <?= form_open_multipart('/daftarkamar/booking') ?>
-                                <?= form_input($id_user) ?>
-                                <?= form_input($id_kamar) ?>
-                                <div class="form-group">
-                                    <?= form_label("Nama", "nama") ?>
-                                    <?= form_input($nama) ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= form_label("Nomor WhatsApp", "no_wa") ?>
-                                    <?= form_input($no_wa) ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= form_label("Email", "email") ?>
-                                    <?= form_input($email) ?>
-                                </div>
-                                <div class="form-group">
-                                    <?= form_label("Kamar", "no_kamar") ?>
-                                    <?= form_input($no_kamar) ?>
-                                </div>
-
-                                <div class="form-group">
-                                    <?= form_label("Biaya /bulan", "biaya") ?>
-                                    <?= form_input($biaya) ?>
-                                </div>
-                                <div class="form-group mb-5">
-                                    <?= form_label("Tahun Masuk", "tahun") ?>
-                                    <br>
-                                    <?= form_input($tahun) ?>
-                                </div>
-                                <div class="text-right">
-                                    <?= form_submit($submit) ?>
-
-                                </div>
-                            </div>
+                        <div class="text-right">
+                            <?= form_submit($submit) ?>
                         </div>
                         <?= form_close() ?>
                     </div>
                 </div>
+
             </div>
         </div>
 </div>

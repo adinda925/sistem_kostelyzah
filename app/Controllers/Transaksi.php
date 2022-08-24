@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use App\Models\TransaksiModel;
+use CodeIgniter\Model;
 use DateTime;
 use DateTimeZone;
 
@@ -20,167 +22,213 @@ class Transaksi extends BaseController
         $this->user = new \App\Models\UserModel();
     }
 
-    public function view()
+    public function view($id)
     {
         $id = $this->request->uri->getSegment(3);
-
+        // dd($id);
         $transaksiModel = new \App\Models\TransaksiModel();
-        $transaksi = $transaksiModel->select('*, transaksi.id_transaksi AS id_transaksi')->join('kamar', 'kamar.id_kamar=transaksi.id_transaksi')
-            ->join('user', 'user.id_user=transaksi.id_user')
-            ->where('transaksi.id_transaksi', $id)
-            ->first();
-
-
+        $transaksi = $transaksiModel->find($id);
+        // dd($transaksi->no_kamar);
+        // ->select('*, transaksi.id_transaksi AS id_transaksi')->join('kamar', 'kamar.id_kamar=transaksi.id_transaksi')
+        //     ->join('user', 'user.id_user=transaksi.id_user')
+        //     ->where('transaksi.id_transaksi', $id)
+        //     ->first();
         return view('transaksi/view', [
             'transaksi' => $transaksi,
+            'id' => $id
         ]);
     }
 
-    public function save()
+    // public function test() {
+    //     dd('test');
+    // }
+
+    // public function save()
+    // {
+    //     try {
+    //         $time = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+    //         $res = $this->transaksi->save([
+    //             'id_user' => $this->request->getPost('id_user'),
+    //             'id_kamar' => $this->request->getPost('id_kamar'),
+    //             'jumlah' => $this->request->getPost('jumlah'),
+    //             'nama' => $this->request->getPost('nama'),
+    //             'email' => $this->request->getPost('email'),
+    //             'no_wa' => $this->request->getPost('no_wa'),
+    //             'no_kamar' => $this->request->getPost('no_kamar'),
+    //             'biaya' => $this->request->getPost('biaya'),
+    //             'tgl_masuk' => $this->request->getPost('tgl_masuk'),
+    //             'order_id' => $this->request->getPost('order_id'),
+    //             'created_at' => $time->format("Y-m-d H:i:s"),
+    //             'updated_at' => $time->format("Y-m-d H:i:s"),
+    //         ]);
+    //         if ($res == false) {
+    //             $data = [
+    //                 "value" => false,
+    //                 "message" => 'data tidak lengkap'
+    //             ];
+    //         } else {
+    //             $data = [
+    //                 "value" => true,
+    //                 // "sukses" => 'Transaksi Midtrans berhasil disimpan, silahkan lanjutkan Pembayaran'
+    //             ];
+    //         }
+    //         return json_encode($data);
+    //     } catch (\Exception $e) {
+    //         $data = [
+    //             "value" => false,
+    //             "message" => $e->getMessage()
+    //         ];
+    //         // return json_encode($data);
+    //     }
+    // }
+
+    public function history()
     {
-        try {
-            $time = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
-            $res = $this->transaksi->save([
-                'id_user' => $this->request->getPost('id_user'),
-                'id_kamar' => $this->request->getPost('id_kamar'),
-                'jumlah' => $this->request->getPost('jumlah'),
-                'nama' => $this->request->getPost('nama'),
-                'email' => $this->request->getPost('email'),
-                'no_wa' => $this->request->getPost('no_wa'),
-                'no_kamar' => $this->request->getPost('no_kamar'),
-                'biaya' => $this->request->getPost('biaya'),
-                'tgl_masuk' => $this->request->getPost('tgl_masuk'),
-                'order_id' => $this->request->getPost('order_id'),
-                'created_at' => $time->format("Y-m-d H:i:s"),
-                'updated_at' => $time->format("Y-m-d H:i:s"),
-            ]);
-            if ($res == false) {
-                $data = [
-                    "value" => false,
-                    "message" => 'data tidak lengkap'
-                ];
-            } else {
-                $data = [
-                    "value" => true,
-                    // "sukses" => 'Transaksi Midtrans berhasil disimpan, silahkan lanjutkan Pembayaran'
-                ];
-            }
-            return json_encode($data);
-        } catch (\Exception $e) {
-            $data = [
-                "value" => false,
-                "message" => $e->getMessage()
-            ];
-            // return json_encode($data);
-        }
+        $this->session = \Config\Services::session();
+        $this->session->start();
+
+        $id_user = $this->session->get('id');
+        $TransaksiModel = new \App\Models\TransaksiModel();
+        $transaksi = $TransaksiModel->findAll();
+        $data = [
+            'title' => 'BOOKING KAMAR',
+            'iduser' => $id_user,
+            'transaksi' => $transaksi
+        ];
+        return view('transaksi/history', $data);
     }
 
-    public function update()
-    {
-        $id = $this->request->uri->getSegment(3);
-        $modeltransaksi = new \App\Models\TransaksiModel();
-        $transaksi = $modeltransaksi->find($id);
+    // public function update()
+    // {
+    //     $id = $this->request->uri->getSegment(3);
+    //     $modeltransaksi = new \App\Models\TransaksiModel();
+    //     $transaksi = $modeltransaksi->find($id);
 
-        if ($this->request->getPost()) {
-            $data = $this->request->getPost();
-            $this->validation->run($data, 'transaksiupdate');
-            $errors = $this->validation->getErrors();
+    //     if ($this->request->getPost()) {
+    //         $data = $this->request->getPost();
+    //         $this->validation->run($data, 'transaksiupdate');
+    //         $errors = $this->validation->getErrors();
 
-            if (!$errors) {
-                $b = new \App\Entities\transaksi();
-                $b->id_transaksi = $id;
-                $b->fill($data);
+    //         if (!$errors) {
+    //             $b = new \App\Entities\transaksi();
+    //             $b->id_transaksi = $id;
+    //             $b->fill($data);
 
-                $modeltransaksi->save($b);
+    //             $modeltransaksi->save($b);
 
-                $segments = ['transaksi', 'history', $id];
+    //             $segments = ['transaksi', 'history', $id];
 
 
-                return redirect()->to(base_url($segments));
-            }
-        }
+    //             return redirect()->to(base_url($segments));
+    //         }
+    //     }
 
-        return view('transaksi/update', [
-            'transaksi' => $transaksi,
-        ]);
-    }
+    //     return view('transaksi/update', [
+    //         'transaksi' => $transaksi,
+    //     ]);
+    // }
 
     public function finishMidtrans()
     {
-        try {
-            $res = $this->transaksii->save([
-                'id_user' => $this->request->getPost('id_user'),
-                'id_kamar' => $this->request->getPost('id_kamar'),
-                'jumlah' => $this->request->getPost('jumlah'),
-                'nama' => $this->request->getPost('nama'),
-                'email' => $this->request->getPost('email'),
-                'no_wa' => $this->request->getPost('no_wa'),
-                'no_kamar' => $this->request->getPost('no_kamar'),
-                'biaya' => $this->request->getPost('biaya'),
-                'tgl_masuk' => $this->request->getPost('tgl_masuk'),
-                'order_id' => $this->request->getPost('order_id'),
-                'payment_type' => $this->request->getPost('payment_type'),
-                'transaction_status' => $this->request->getPost('transaction_status'),
-                'transaction_time' => $this->request->getPost('transaction_time'),
-                'va_number' => $this->request->getPost('va_number'),
-                'bank' => $this->request->getPost('bank'),
-                'pdf_url' => $this->request->getPost('pdf_url'),
-            ]);
-            if ($res == false) {
-                $json = [
-                    "value" => false,
-                    "message" => 'data tidak lengkap'
-                ];
-            } else {
-                $json = [
-                    "value" => true,
-                    "sukses" => 'Transaksi Midtrans berhasil disimpan, silahkan lanjutkan Pembayaran'
-                ];
-            }
-            return json_encode($json);
-        } catch (\Exception $e) {
-            $json = [
-                "value" => false,
-                "message" => $e->getMessage()
-            ];
-            // return json_encode($data);
-        }
+        if ($this->request->isAJAX()) {
+            $order_id = $this->request->getPost('order_id');
+            $payment_type = $this->request->getPost('payment_type');
+            $transaction_status = $this->request->getPost('transaction_status');
+            $transaction_time = $this->request->getPost('transaction_time');
+            $va_number = $this->request->getPost('va_number');
+            $bank = $this->request->getPost('bank');
+            $pdf_url = $this->request->getPost('pdf_url');
 
-        // menyimpan data transaksi
-        try {
-            $time = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
-            $res = $this->transaksi->save([
-                'id_user' => $this->request->getPost('id_user'),
-                'id_kamar' => $this->request->getPost('id_kamar'),
-                'jumlah' => $this->request->getPost('jumlah'),
-                'nama' => $this->request->getPost('nama'),
-                'email' => $this->request->getPost('email'),
-                'no_wa' => $this->request->getPost('no_wa'),
-                'no_kamar' => $this->request->getPost('no_kamar'),
-                'biaya' => $this->request->getPost('biaya'),
-                'tgl_masuk' => $this->request->getPost('tgl_masuk'),
-                'order_id' => $this->request->getPost('order_id'),
-                'created_at' => $time->format("Y-m-d H:i:s"),
-                'updated_at' => $time->format("Y-m-d H:i:s"),
+            $modeltransaksi = new TransaksiModel();
+            $modeltransaksi->insert([
+                'order_id' => $order_id,
+                'payment_type' => $payment_type,
+                'transaction_status' => $transaction_status,
+                'transaction_time' => $transaction_time,
+                'va_number' => $va_number,
+                'bank' => $bank,
+                'pdf_url' => $pdf_url,
             ]);
-            if ($res == false) {
-                $data = [
-                    "value" => false,
-                    "message" => 'data tidak lengkap'
-                ];
-            } else {
-                $data = [
-                    "value" => true,
-                    // "sukses" => 'Transaksi Midtrans berhasil disimpan, silahkan lanjutkan Pembayaran'
-                ];
-            }
-            return json_encode($data);
-        } catch (\Exception $e) {
-            $data = [
-                "value" => false,
-                "message" => $e->getMessage()
+
+            $json = [
+                'success' => 'TRANSAKSI BERHASIL, SILAHKAN LAKUKAN PEMBAYARAN'
             ];
-            // return json_encode($data);
+            echo json_encode($json);
         }
+        // try {
+        //     $res = $this->transaksii->save([
+        //         'id_user' => $this->request->getPost('id_user'),
+        //         'id_kamar' => $this->request->getPost('id_kamar'),
+        //         'jumlah' => $this->request->getPost('jumlah'),
+        //         'nama' => $this->request->getPost('nama'),
+        //         'email' => $this->request->getPost('email'),
+        //         'no_wa' => $this->request->getPost('no_wa'),
+        //         'no_kamar' => $this->request->getPost('no_kamar'),
+        //         'biaya' => $this->request->getPost('biaya'),
+        //         'tgl_masuk' => $this->request->getPost('tgl_masuk'),
+        //         'order_id' => $this->request->getPost('order_id'),
+        //         'payment_type' => $this->request->getPost('payment_type'),
+        //         'transaction_status' => $this->request->getPost('transaction_status'),
+        //         'transaction_time' => $this->request->getPost('transaction_time'),
+        //         'va_number' => $this->request->getPost('va_number'),
+        //         'bank' => $this->request->getPost('bank'),
+        //         'pdf_url' => $this->request->getPost('pdf_url'),
+        //     ]);
+        //     if ($res == false) {
+        //         $json = [
+        //             "value" => false,
+        //             "message" => 'data tidak lengkap'
+        //         ];
+        //     } else {
+        //         $json = [
+        //             "value" => true,
+        //             "sukses" => 'Transaksi Midtrans berhasil disimpan, silahkan lanjutkan Pembayaran'
+        //         ];
+        //     }
+        //     return json_encode($json);
+        // } catch (\Exception $e) {
+        //     $json = [
+        //         "value" => false,
+        //         "message" => $e->getMessage()
+        //     ];
+        //     // return json_encode($data);
+        // }
+
+        // // menyimpan data transaksi
+        // try {
+        //     $time = new DateTime("now", new DateTimeZone('Asia/Jakarta'));
+        //     $res = $this->transaksi->save([
+        //         'id_user' => $this->request->getPost('id_user'),
+        //         'id_kamar' => $this->request->getPost('id_kamar'),
+        //         'jumlah' => $this->request->getPost('jumlah'),
+        //         'nama' => $this->request->getPost('nama'),
+        //         'email' => $this->request->getPost('email'),
+        //         'no_wa' => $this->request->getPost('no_wa'),
+        //         'no_kamar' => $this->request->getPost('no_kamar'),
+        //         'biaya' => $this->request->getPost('biaya'),
+        //         'tgl_masuk' => $this->request->getPost('tgl_masuk'),
+        //         'order_id' => $this->request->getPost('order_id'),
+        //         'created_at' => $time->format("Y-m-d H:i:s"),
+        //         'updated_at' => $time->format("Y-m-d H:i:s"),
+        //     ]);
+        //     if ($res == false) {
+        //         $data = [
+        //             "value" => false,
+        //             "message" => 'data tidak lengkap'
+        //         ];
+        //     } else {
+        //         $data = [
+        //             "value" => true,
+        //             // "sukses" => 'Transaksi Midtrans berhasil disimpan, silahkan lanjutkan Pembayaran'
+        //         ];
+        //     }
+        //     return json_encode($data);
+        // } catch (\Exception $e) {
+        //     $data = [
+        //         "value" => false,
+        //         "message" => $e->getMessage()
+        //     ];
+        //     // return json_encode($data);
+        // }
     }
 }

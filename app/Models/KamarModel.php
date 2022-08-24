@@ -9,7 +9,7 @@ class KamarModel extends Model
     protected $table = 'kamar';
     protected $primaryKey = 'id_kamar';
     protected $allowedFields = [
-        'no_kamar', 'fasilitas', 'biaya', 'denda', 'foto', 'id_kategori', 'created_by', 'created_date', 'updated_by', 'updated_date', 'deleted_at'
+        'no_kamar', 'fasilitas', 'biaya', 'foto', 'id_kategori', 'jumlah', 'created_by', 'created_date', 'updated_by', 'updated_date', 'deleted_at'
     ];
     protected $returnType = 'App\Entities\Kamar';
     protected $useTimestamps = false;

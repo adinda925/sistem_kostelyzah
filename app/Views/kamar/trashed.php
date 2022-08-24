@@ -20,7 +20,7 @@
                             <th>Foto Kamar</th>
                             <th>Fasilitas</th>
                             <th>Biaya /bulan</th>
-                            <th>Status</th>
+                            <th>Jumlah Kamar Tersedia</th>
                             <th>Aksi</th>
                         </thead>
                         <tbody>
@@ -32,7 +32,7 @@
                                         <img class="img-fluid" width="200px" alt="foto" src="<?= base_url('uploads/' . $kamar->foto) ?>" />
                                     </td>
                                     <td><?= $kamar->fasilitas; ?></td>
-                                    <td><?= number_format($kamar->biaya, 2, ',', '.') ?></td>
+                                    <td><?= $kamar->jumlah; ?></td>
                                     <td><?= $kamar->id_kategori ?></td>
                                     <td class="">
                                         <a href="<?= site_url('kamar/restore/' . $kamar->id_kamar) ?>" class="d-flex btn btn-success my-2 font_table">Restore</a>

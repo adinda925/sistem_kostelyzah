@@ -15,29 +15,37 @@
                  </button>
                  <!-- Collect the nav links, forms, and other content for toggling -->
                  <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                     <ul class="nav navbar-nav menu_nav ml-auto">
-                         <li class="nav-item"><a class="nav-link" href="<?= base_url('home') ?>">Home</a></li>
-                         <li class="nav-item"><a class="nav-link" href="<?= base_url('home/daftarkamar') ?>">Rooms List</a></li>
-                         <li class="nav-item"><a class="nav-link" href="<?= base_url('home/contact') ?>">Contact Us</a></li>
-                         <?php if ($session->get('isLoggedIn') && session()->get('role') == 0) : ?>
+                     <?php if ($session->get('isLoggedIn') && session()->get('role') == 0) : ?>
+                         <ul class="nav navbar-nav menu_nav ml-auto">
+                             <li class="nav-item"><a class="nav-link" href="<?= base_url('home') ?>" style="color: red;">Beranda</a></li>
+                             <li class="nav-item"><a class="nav-link" href="<?= base_url('home/daftarkamar') ?>" style="color: red;">Daftar Kamar</a></li>
+                             <li class="nav-item"><a class="nav-link" href="<?= base_url('home/contact') ?>" style="color: red;">Kontak Kami</a></li>
                              <li class="nav-item submenu dropdown">
-                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Managements</a>
+                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false" style="color: red;">Managements</a>
                                  <ul class="dropdown-menu">
-                                     <li class="nav-item"><a class="nav-link" href="<?= base_url('manage_user'); ?>">Users</a></li>
+                                     <li class="nav-item"><a class="nav-link" href="<?= base_url('transaksi/history'); ?>">Transaction History</a></li>
                                      <li class="nav-item"><a class="nav-link" href="<?= base_url('kamar/create'); ?>">Add Rooms</a></li>
-                                     <li class="nav-item"><a class="nav-link" href="<?= base_url('kamar/'); ?>">List Rooms</a></li>
+                                     <li class="nav-item"><a class="nav-link" href="<?= base_url('kamar/'); ?>">Rooms List</a></li>
+                                     <li class="nav-item"><a class="nav-link" href="<?= base_url('user/'); ?>">Users List</a></li>
                                  </ul>
                              </li>
-                         <?php endif ?>
-                         <?php if ($session->get('isLoggedIn')) : ?>
-                             <li class="nav-item"><a class="nav-link" href="<?= base_url('auth/logout') ?>">Logout</a></li>
                          <?php else : ?>
-                             <li class="nav-item"><a class="nav-link" href="<?= base_url('auth/login') ?>">Login</a></li>
-                         <?php endif ?>
+                             <ul class="nav navbar-nav menu_nav ml-auto">
+                                 <li class="nav-item"><a class="nav-link" href="<?= base_url('home') ?>">Beranda</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="<?= base_url('home/daftarkamar') ?>">Daftar Kamar</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="<?= base_url('home/contact') ?>">Kontak Kami</a></li>
+                             <?php endif ?>
+                             <?php if ($session->get('isLoggedIn') && session()->get('role') == 0) : ?>
+                                 <li class="nav-item"><a class="nav-link" href="<?= base_url('auth/logout') ?>" style="color: red;">Logout</a></li>
+                             <?php elseif ($session->get('isLoggedIn') && session()->get('role') == 1) : ?>
+                                 <li class="nav-item"><a class="nav-link" href="<?= base_url('auth/logout') ?>">Logout</a></li>
+                             <?php else : ?>
+                                 <li class="nav-item"><a class="nav-link" href="<?= base_url('auth/login') ?>">Login</a></li>
+                             <?php endif ?>
 
 
 
-                         <!-- <li class="nav-item submenu dropdown">
+                             <!-- <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Shop</a>
                                 <ul class="dropdown-menu">
                                     <li class="nav-item"><a class="nav-link" href="category.html">Shop Category</a></li>
@@ -61,7 +69,7 @@
                                     <li class="nav-item"><a class="nav-link" href="elements.html">Elements</a></li>
                                 </ul>
                             </li> -->
-                     </ul>
+                             </ul>
                  </div>
              </div>
          </nav>

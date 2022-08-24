@@ -29,18 +29,20 @@
                     'min' => 0,
                 ];
 
+                $jumlah = [
+                    'name' => 'jumlah',
+                    'id' => 'jumlah',
+                    'value' => $kamar->jumlah,
+                    'class' => 'form-control',
+                    'type' => 'number',
+                    'min' => 0,
+                ];
+
                 $foto = [
                     'name' => 'foto',
                     'id' => 'foto',
                     'value' => null,
                     'class' => 'form-control',
-                ];
-
-                $id_kategori = [
-                    'name' => 'id_kategori',
-                    'class' => 'form-control',
-                    'options' => $arrayKategori,
-                    'selected' => $kamar->id_kategori,
                 ];
 
                 $submit = [
@@ -55,7 +57,7 @@
                 ?>
 
 
-                <div class="tabeltambah card my-5">
+                <div class="tabeltambah card lg-12">
                     <dic class="card-header">
                         <h1>Update Kamar</h1>
                     </dic>
@@ -77,10 +79,9 @@
                             <?= form_input($biaya) ?>
                         </div>
 
-                        <div class="form-group mb-5">
-                            <?= form_label("Kategori", "id_kategori") ?>
-                            <br>
-                            <?= form_dropdown($id_kategori) ?>
+                        <div class="form-group">
+                            <?= form_label("Jumlah Kamar Tersedia", "jumlah") ?>
+                            <?= form_input($jumlah) ?>
                         </div>
 
                         <div class="form-group">

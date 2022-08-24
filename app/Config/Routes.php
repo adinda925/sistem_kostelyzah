@@ -43,8 +43,10 @@ $routes->get('kamar/restore/(:any)', 'Kamar::restore/$1');
 $routes->get('kamar/delete/(:any)', 'Kamar::delete/$1');
 $routes->get('kamar/delete2', 'Kamar::delete2');
 $routes->get('/daftarkamar/booking/(:any)', 'DaftarKamar::booking/$1');
-$routes->get('/payment/finishMidtrans', 'Payment::finishMidtrans');
-$routes->get('/payment/index', 'Payment::index');
+$routes->post('/daftarkamar/booking-done', 'DaftarKamar::saveBooking');
+$routes->get('/transaksi/finishMidtrans', 'Transaksi::finishMidtrans');
+$routes->post('/payment', 'Payment::index');
+// $routes->get('/payment/index', 'Payment::index');
 
 /*
  * --------------------------------------------------------------------

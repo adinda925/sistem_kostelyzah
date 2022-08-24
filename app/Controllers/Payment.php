@@ -29,47 +29,32 @@ class Payment extends BaseController
         // Set 3DS transaction for credit card to true
         \Midtrans\Config::$is3ds = true;
 
-        $id_user = $_POST['id_user'];
-        $id_kamar = $_POST['id_kamar'];
-        $no_kamar = $_POST['no_kamar'];
-        $nama = $_POST['nama'];
-        $email = $_POST['email'];
-        $no_wa = $_POST['no_wa'];
-        $biaya = $_POST['biaya'];
-        $tgl_masuk = $_POST['tgl_masuk'];
+        $id = (int) $_POST['id'];
+        $transaksiModel = new \App\Models\TransaksiModel();
+        $transaksi = $transaksiModel->find($id);
 
         $params = array(
             'transaction_details' => array(
                 'order_id' => rand(),
-                'gross_amount' => $biaya,
+                'gross_amount' => (int) $transaksi->biaya,
             ),
             'customer_details' => array(
-                'nama' => $nama,
-                'email' => $email,
-                'phone' => $no_wa,
+                'first_name' => $transaksi->nama,
+                'email' => $transaksi->email,
+                'phone' => $transaksi->no_wa,
             ),
-            'item_details' => array(
-                array(
-                    'id'       => 'SEWA KAMAR KOST ELYZAH',
-                    'price'    => $biaya,
-                    'no_kamar' => $no_kamar,
-                    'tgl_masuk' => $tgl_masuk,
-                ),
-            )
+            // 'item_details' => array(
+            //     'id'       => $transaksi->id,
+            //     'price'    => $transaksi->biaya,
+            //     'quantity' => 1,
+            //     'name' => $transaksi->no_kamar,
+            // ),
         );
 
-        $data = [
+        $data = array(
             'snapToken' => \Midtrans\Snap::getSnapToken($params),
             'status' => 'Success',
-            'no_kamar'     => $no_kamar,
-            'nama' => $nama,
-            'email' => $email,
-            'no_wa' => $no_wa,
-            'biaya' => $biaya,
-            'tahun' => $tgl_masuk,
-            'id_kamar' => $id_kamar,
-            'id_user' => $id_user,
-        ];
+        );
         return json_encode($data);
     }
 }

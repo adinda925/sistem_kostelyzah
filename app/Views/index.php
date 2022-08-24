@@ -12,7 +12,7 @@
                         <div class="col-lg-5 col-md-6">
                             <div class="banner-content">
                                 <h1>Kost Elyzah</h1>
-                                <p>Berlokasi di Jalan Rawajati Timur II, Gang Porti No. 49B. Lokasi strategis, dekat dari pusat perbelanjaan dan hanya 5 menit menuju Stasiun Duren Kalibata dan Halte Transjakarta Plaza Kalibata.</p>
+                                <p>Indekos Khusus PRIA. Berlokasi di Jalan Rawajati Timur II, Gang Porti No. 49B. Lokasi strategis, dekat dari pusat perbelanjaan dan hanya 5 menit menuju Stasiun Duren Kalibata dan Halte Transjakarta Plaza Kalibata.</p>
                             </div>
                         </div>
                         <div class="col-lg-7">
@@ -26,7 +26,7 @@
                         <div class="col-lg-5">
                             <div class="banner-content">
                                 <h1>Kost Elyzah</h1>
-                                <p>Berlokasi di Jalan Rawajati Timur II, Gang Porti No. 49B. Lokasi strategis, dekat dari pusat perbelanjaan dan hanya 5 menit menuju Stasiun Duren Kalibata dan Halte Transjakarta Plaza Kalibata.</p>
+                                <p>Indekos Khusus PRIA. Berlokasi di Jalan Rawajati Timur II, Gang Porti No. 49B. Lokasi strategis, dekat dari pusat perbelanjaan dan hanya 5 menit menuju Stasiun Duren Kalibata dan Halte Transjakarta Plaza Kalibata.</p>
                                 <div class="add-bag d-flex align-items-center">
                                 </div>
                             </div>
@@ -42,6 +42,118 @@
         </div>
 </section>
 <!-- End banner Area -->
+
+<!-- Start category Area -->
+<section class="category-area">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-12">
+                <div class="row">
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/depan.jpeg" alt="">
+                            <a href="<?= base_url('') ?>/img/depan.jpeg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Bangunan Indekos</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/jalan.jpeg" alt="">
+                            <a href="<?= base_url('') ?>/img/jalan.jpeg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Jalan Depan Indekos</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/parkiran.jpeg" alt="">
+                            <a href="<?= base_url('') ?>/img/parkiran.jpeg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Parkiran Indekos</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kamar_2.jpeg" alt="">
+                            <a href="<?= base_url('') ?>/img/kamar/kamar_2.jpeg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Kamar</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kamar sedang_2.jpeg" alt="">
+                            <a href="<?= base_url('') ?>/img/kamar/kamar sedang_2.jpeg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Tersedia Lemari</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kamar besar_1.jpeg" alt="">
+                            <a href="<?= base_url('') ?>/img/kamar/kamar besar_1.jpeg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Kamar</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kamar kecil.jpeg" alt="">
+                            <a href="<?= base_url('') ?>/img/kamar/kamar kecil.jpeg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Tersedia Kasur</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kamar besar_3.jpeg" alt="">
+                            <a href="<?= base_url('') ?>/img/kamar/kamar besar_3.jpeg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Kamar Mandi Dalam</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single-deal">
+                            <div class="overlay"></div>
+                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kamar besar_2.jpeg" alt="">
+                            <a href="<?= base_url('') ?>/img/kamar/kamar besar_2.jpeg" class="img-pop-up" target="_blank">
+                                <div class="deal-details">
+                                    <h6 class="deal-title">Kamar</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- End category Area -->
 
 <!-- start features Area -->
 <section class="features-area section_gap">
@@ -76,90 +188,11 @@
                 <div class="single-features">
                     <i class="fa-solid fa-bolt" style="font-size: xx-large;margin-bottom: 20px;"></i>
                     <h6>Listrik</h6>
-                    <p>Sudah Termasuk Listrik</p>
+                    <p>Sudah Termasuk Listrik 1300 Watt</p>
                 </div>
             </div>
         </div>
     </div>
 </section>
 <!-- end features Area -->
-
-<!-- Start category Area -->
-<section class="category-area">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-12">
-                <div class="row">
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-deal">
-                            <div class="overlay"></div>
-                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kamar_1.jpeg" alt="">
-                            <a href="img/kamar/kamar_1.jpeg" class="img-pop-up" target="_blank">
-                                <div class="deal-details">
-                                    <h6 class="deal-title">Kamar 3 x 3 m</h6>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-deal">
-                            <div class="overlay"></div>
-                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/lemari_1.jpeg" alt="">
-                            <a href="img/kamar/lemari_1.jpeg" class="img-pop-up" target="_blank">
-                                <div class="deal-details">
-                                    <h6 class="deal-title">Tersedia Lemari</h6>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-deal">
-                            <div class="overlay"></div>
-                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kamar_2.jpeg" alt="">
-                            <a href="img/kamar/kamar_2.jpeg" class="img-pop-up" target="_blank">
-                                <div class="deal-details">
-                                    <h6 class="deal-title">Kamar 3 x 3 m</h6>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-deal">
-                            <div class="overlay"></div>
-                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kasur_1.jpeg" alt="">
-                            <a href="img/kamar/kasur_1.jpeg" class="img-pop-up" target="_blank">
-                                <div class="deal-details">
-                                    <h6 class="deal-title">Tersedia Kasur</h6>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-deal">
-                            <div class="overlay"></div>
-                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kamar_mandi_1.jpeg" alt="">
-                            <a href="img/kamar/kamar_mandi_1.jpeg" class="img-pop-up" target="_blank">
-                                <div class="deal-details">
-                                    <h6 class="deal-title">Kamar Mandi Dalam</h6>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="col-lg-4 col-md-6">
-                        <div class="single-deal">
-                            <div class="overlay"></div>
-                            <img class="img-fluid w-100" src="<?= base_url('') ?>/img/kamar/kamar_3.jpeg" alt="">
-                            <a href="img/kamar/kamar_3.jpeg" class="img-pop-up" target="_blank">
-                                <div class="deal-details">
-                                    <h6 class="deal-title">Kamar 3 x 3 m</h6>
-                                </div>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End category Area -->
 <?= $this->endSection(); ?>

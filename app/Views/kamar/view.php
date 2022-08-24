@@ -12,11 +12,9 @@
                         <div class="s_product_text">
                             <h3><?= $kamar->no_kamar; ?></h3>
                             <h2><?= "Rp " . number_format($kamar->biaya, 2, ',', '.'); ?> /bulan</h2>
-                            <ul class="list">
-                                <h6><?= $kategori->kategori; ?> </h6>
-                            </ul>
                             <p><?= $kamar->fasilitas; ?></p>
-                            <?php if ($kamar->id_kategori == 2) : ?>
+                            <h6>Jumlah Kamar Tersedia: <?= $kamar->jumlah; ?> kamar</h6>
+                            <?php if ($kamar->jumlah != 0) : ?>
                                 <div class="card_area d-flex align-items-center">
                                     <a class="primary-btn" href="<?= base_url('daftarkamar/booking/' . $kamar->id_kamar); ?>">Booking Kamar</a>
                                 </div>
@@ -24,6 +22,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
